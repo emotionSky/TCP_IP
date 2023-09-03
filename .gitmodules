@@ -1,0 +1,3 @@
+[submodule "DreamSky"]
+	path = DreamSky
+	url = https://github.com/emotionSky/DreamSky.git
