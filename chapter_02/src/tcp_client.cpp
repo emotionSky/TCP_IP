@@ -54,12 +54,17 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	char message[30];
-	int str_len = recv(client_sock, message, sizeof(message) - 1, 0);
-	if (str_len == -1)
+	char message[30] = { 0 };
+	int read_index = 0, read_len = 0, str_len = 0;
+	while (read_len = recv(client_sock, &message[read_index++], 1, 0))
 	{
-		print_console(PRINT_ERROR, "failed to get response!");
-		return -1;
+		if (read_len == -1)
+		{
+			print_console(PRINT_ERROR, "failed to recv data from server.");
+			break;
+		}
+
+		str_len += read_len;
 	}
 	print_console(PRINT_INFOR, "Get response from server: %s", message);
 	closesocket(client_sock);
