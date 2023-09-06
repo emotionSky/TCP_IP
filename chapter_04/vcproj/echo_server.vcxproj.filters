@@ -10,17 +10,17 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="脚本">
-      <UniqueIdentifier>{f3ec463e-4ddf-481d-97e0-b25df38a4f49}</UniqueIdentifier>
+      <UniqueIdentifier>{0e9bb2ed-d1aa-4fae-bda2-edc5c42b5b18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\hello_client.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="post_client.bat">
+    <None Include="post_echo_server.bat">
       <Filter>脚本</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\echo_server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
