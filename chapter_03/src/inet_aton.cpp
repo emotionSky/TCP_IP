@@ -1,6 +1,6 @@
 ﻿#include <DreamSky/dream_print.h>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDLL)
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib ") 
@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #endif
+
+using namespace dreamsky;
 
 int main(int argc, char* argv[])
 {

@@ -1,9 +1,10 @@
 ﻿#include <DreamSky/dream_print.h>
 #include <DreamSky/dream_socket.h>
 #include <cstring>
+#include <cstdio>
 #include <cstdlib>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDLL)
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib ") 
@@ -11,11 +12,9 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#define closesocket close
-using SOCKET = int;
-using INVALID_SOCKET = -1;
-using SOCKET_ERROR = -1;
 #endif
+
+using namespace dreamsky;
 
 constexpr int BUFFER_SIZE = 1024;
 
@@ -34,8 +33,8 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	SOCKET server_sock = socket(PF_INET, SOCK_STREAM, 0);
-	if (server_sock == INVALID_SOCKET)
+	sock_t server_sock = socket(PF_INET, SOCK_STREAM, 0);
+	if (server_sock == invalid_sock)
 	{
 		print_console(PRINT_ERROR, "failed to get socket!");
 		return -1;
@@ -51,13 +50,13 @@ int main(int argc, char* argv[])
 	//InetPton 使用宽字符
 	server_addr.sin_port = htons(atoi(argv[1]));
 
-	if (bind(server_sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) == SOCKET_ERROR)
+	if (bind(server_sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) == sock_error)
 	{
 		print_console(PRINT_ERROR, "failed to bind port: %s", argv[1]);
 		return -1;
 	}
 
-	if (listen(server_sock, 5) == SOCKET_ERROR)
+	if (listen(server_sock, 5) == sock_error)
 	{
 		print_console(PRINT_ERROR, "failed to listen port: %s", argv[1]);
 		return -1;
@@ -65,7 +64,7 @@ int main(int argc, char* argv[])
 
 	struct sockaddr_in client_addr;
 	socklen_t client_addr_size = sizeof(client_addr);
-	SOCKET client_sock = INVALID_SOCKET;
+	sock_t client_sock = invalid_sock;
 	int recv_len = 0;
 	char message[BUFFER_SIZE] = { 0 };
 
@@ -94,7 +93,7 @@ int main(int argc, char* argv[])
 	for (int index = 0; index < 5; ++index)
 	{
 		client_sock = accept(server_sock, (struct sockaddr*)&client_addr, &client_addr_size);
-		if (client_sock == INVALID_SOCKET)
+		if (client_sock == invalid_sock)
 		{
 			print_console(PRINT_ERROR, "failed to accept request: %d.", index + 1);
 			continue;
@@ -133,9 +132,9 @@ int main(int argc, char* argv[])
 			write_32bit(message, res);
 			send(client_sock, message, size_int, 0);
 		}
-		closesocket(client_sock);
+		close_socket(client_sock);
 	}
-	closesocket(server_sock);
+	close_socket(server_sock);
 
 	CleanSocketEnv();
 	return 0;

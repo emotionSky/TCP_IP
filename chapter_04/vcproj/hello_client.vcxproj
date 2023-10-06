@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\DreamSky\3d_part\DreamHeaders\include;..\..\DreamSky\3d_part\DreamCommon\include;..\..\DreamSky\3d_part\DreamSocket\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\DreamSky\3d_part\DreamCommon\lib;..\..\DreamSky\3d_part\DreamSocket\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\DreamSky\3d_part\DreamHeaders\v1.0.0\include;..\..\DreamSky\3d_part\DreamCommon\v1.0.0\include;..\..\DreamSky\3d_part\DreamSocket\v1.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\DreamSky\3d_part\DreamCommon\v1.0.0\lib;..\..\DreamSky\3d_part\DreamSocket\v1.0.0\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\chapter_04\$(ProjectName)\</OutDir>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>

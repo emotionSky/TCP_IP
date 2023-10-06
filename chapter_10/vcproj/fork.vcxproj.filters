@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{08bc4a62-cf7f-45c0-a37e-6330a4da1f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="脚本">
+      <UniqueIdentifier>{aa2543de-e5e7-426e-a763-7153a0e2215c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\fork.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="post_fork.bat">
+      <Filter>脚本</Filter>
+    </None>
+  </ItemGroup>
+</Project>

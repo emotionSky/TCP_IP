@@ -73,8 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\chapter_03\$(ProjectName)\</OutDir>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
-    <IncludePath>..\..\DreamSky\3d_part\DreamHeaders\include;..\..\DreamSky\3d_part\DreamCommon\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\DreamSky\3d_part\DreamCommon\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\DreamSky\3d_part\DreamHeaders\v1.0.0\include;..\..\DreamSky\3d_part\DreamCommon\v1.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\DreamSky\3d_part\DreamCommon\v1.0.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

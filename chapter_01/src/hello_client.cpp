@@ -1,9 +1,10 @@
 #include <DreamSky/dream_print.h>
 #include <DreamSky/dream_socket.h>
 #include <cstring>
+#include <cstdio>
 #include <cstdlib>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDLL)
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib ") 
@@ -11,11 +12,9 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#define closesocket close
-using SOCKET = int;
-using INVALID_SOCKET = -1;
-using SOCKET_ERROR = -1;
 #endif
+
+using namespace dreamsky;
 
 int main(int argc, char* argv[])
 {
@@ -32,8 +31,8 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	SOCKET client_sock = socket(PF_INET, SOCK_STREAM, 0);
-	if (client_sock == INVALID_SOCKET)
+	sock_t client_sock = socket(PF_INET, SOCK_STREAM, 0);
+	if (client_sock == invalid_sock)
 	{
 		print_console(PRINT_ERROR, "failed to get socket!");
 		return -1;
@@ -48,7 +47,7 @@ int main(int argc, char* argv[])
 	//InetPton Ê¹ÓÃ¿í×Ö·û
 	server_addr.sin_port = htons(atoi(argv[2]));
 
-	if (connect(client_sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) == SOCKET_ERROR)
+	if (connect(client_sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) == sock_error)
 	{
 		print_console(PRINT_ERROR, "failed to connect server!");
 		return -1;
@@ -62,7 +61,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 	print_console(PRINT_INFOR, "Get response from server: %s", message);
-	closesocket(client_sock);
+	close_socket(client_sock);
 
 	CleanSocketEnv();
 	return 0;

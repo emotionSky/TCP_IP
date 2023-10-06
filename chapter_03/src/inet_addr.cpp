@@ -1,6 +1,6 @@
 ﻿#include <DreamSky/dream_print.h>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDLL)
 // 使用这个宏，仅仅是为了在Windows下使用 inet_addr
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #endif
+
+using namespace dreamsky;
 
 int main(int argc, char* argv[])
 {
